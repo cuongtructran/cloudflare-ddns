@@ -1,0 +1,3 @@
+check_interval: 5        # IP check interval in minutes. Default: 5 mins
+domains:
+  - yourdomain.com

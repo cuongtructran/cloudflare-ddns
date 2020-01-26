@@ -1,0 +1,3 @@
+cloudflare:
+  apikey: YOUR_API_KEY
+  email: YOUR_EMAIL
