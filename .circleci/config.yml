@@ -5,18 +5,17 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/python
-
-    working_directory: ~/app
-
     steps:
       - checkout
       - run:
-          name: install dependencies
+          name: docker hub login
           command: |
-            pipenv install --system --deploy --clear
+            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --email=$DOCKER_EMAIL --password-stdin
       - run:
-          name: start app
+          name: build docker image
           command: |
-            python3 ./app.py
+            docker build -t cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH .
+      - run:
+          name: push docker image
+          command: |
+            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
