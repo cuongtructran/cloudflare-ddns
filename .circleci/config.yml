@@ -8,9 +8,9 @@ jobs:
     machine: true
     steps:
       - run:
-        name: docker hub login
-        command: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          name: docker hub login
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
   build-branch:
     machine: true
     steps:
