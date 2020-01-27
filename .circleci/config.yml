@@ -22,7 +22,7 @@ jobs:
             docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
 workflows:
   version: 2
-  build:
+  psuh-to-dockerhub:
     jobs:
       - build:
           filters:
