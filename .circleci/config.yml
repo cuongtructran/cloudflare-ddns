@@ -4,17 +4,14 @@
 #
 version: 2
 jobs:
-  dockerhub-login:
-    machine: true
-    steps:
-      - run:
-          name: docker hub login
-          command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
   build-branch:
     machine: true
     steps:
       - checkout
+      - run:
+        name: docker hub login
+        command: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
           name: build docker image
           command: |
@@ -28,6 +25,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: docker hub login
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
           name: build docker image
           command: |
             docker build -t cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG .
@@ -39,18 +40,13 @@ workflows:
   version: 2
   push-to-dockerhub:
     jobs:
-      - dockerhub-login
       - build-branch:
-          requires:
-            - dockerhub-login
           filters:
             tags:
               ignore: /.*/
             branches:
               only: /.*/
       - build-tag:
-          requires:
-            - dockerhub-login
           filters:
             tags:
               only: /.*/
