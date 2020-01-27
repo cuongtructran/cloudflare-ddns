@@ -18,12 +18,12 @@ class DomainUpdateScheduler(Scheduler):
 
         if is_new_ip:
             for domain in domains:
-                self.update_a_records(domain, current_ip)
+                self.update_a_records(domain.strip(), current_ip)
         else:
             logging.info("IP didn't change")
 
     def load_cf_credential(self):
-        with open('resources/configurations/cred.yaml') as f:
+        with open('resources/configurations/cred.yml') as f:
             cf_cred = yaml.load(f, Loader=yaml.FullLoader).get('cloudflare')
             return cf_cred['email'], cf_cred['apikey']
 
