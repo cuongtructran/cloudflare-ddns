@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "82b779d64380a1379053a8e26dd76f5aee1cfa33727240aceb40a5eab9e8738a"
+            "sha256": "2c73200e41f0a784a2aafc98657b385953678c7bc2d020612d1157a1fc94cd92"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -37,6 +37,12 @@
             "index": "pypi",
             "version": "==2.6.0"
         },
+        "distconfig": {
+            "hashes": [
+                "sha256:9fa636bd561cc9dd1c76817f42ccff6a663e19e4a53dfe7ca11cbfc44e9f3416"
+            ],
+            "version": "==0.1.0"
+        },
         "future": {
             "hashes": [
                 "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
@@ -56,6 +62,18 @@
                 "sha256:43b8d5588a9d4862c8a4a49580e38e20ec595aee7ad6fe469b10fb83fbefde88"
             ],
             "version": "==1.2.0"
+        },
+        "pathlib": {
+            "hashes": [
+                "sha256:6940718dfc3eff4258203ad5021090933e5c04707d5ca8cc9e73c94a7894ea9f"
+            ],
+            "version": "==1.0.1"
+        },
+        "pathtools": {
+            "hashes": [
+                "sha256:7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0"
+            ],
+            "version": "==0.1.2"
         },
         "pyyaml": {
             "hashes": [
@@ -96,12 +114,39 @@
             ],
             "version": "==1.14.0"
         },
+        "toml": {
+            "hashes": [
+                "sha256:229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c",
+                "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"
+            ],
+            "version": "==0.10.0"
+        },
+        "ujson": {
+            "hashes": [
+                "sha256:f66073e5506e91d204ab0c614a148d5aa938bdbf104751be66f8ad7a222f5f86"
+            ],
+            "version": "==1.35"
+        },
         "urllib3": {
             "hashes": [
-                "sha256:a8a318824cc77d1fd4b2bec2ded92646630d7fe8619497b142c84a9e6f5a7293",
-                "sha256:f3c5fd51747d450d4dcf6f923c81f78f811aab8205fda64b0aba34a4e48b0745"
+                "sha256:2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc",
+                "sha256:87716c2d2a7121198ebcb7ce7cccf6ce5e9ba539041cfbaeecfb641dc0bf6acc"
             ],
-            "version": "==1.25.7"
+            "version": "==1.25.8"
+        },
+        "vyper-config": {
+            "hashes": [
+                "sha256:244ba1f62953d8a15db127ccabe4eff259f85c915bf0c950a1932922df5d4588",
+                "sha256:edd49bbf049955541cf6829853aef2d37f6284615d4307ac85e4ee2da46919a1"
+            ],
+            "index": "pypi",
+            "version": "==0.6.1"
+        },
+        "watchdog": {
+            "hashes": [
+                "sha256:8e800496cdfb921cfdc62b58a11966d0d2203a35dc005b4b5b8e1ab3097b2eb5"
+            ],
+            "version": "==0.10.0"
         }
     },
     "develop": {}

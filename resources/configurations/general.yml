@@ -1,5 +1,5 @@
 # IP check interval in minutes. Default: 5 mins
-check_interval: 1
+check_interval: 5
 
 # List of domains need to be tracked, separated by commas
 domains: 'yourdomain.com, yourdomain2.com'
