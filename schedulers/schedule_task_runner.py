@@ -17,7 +17,8 @@ class ScheduledTasksRunner:
             task.execute()
 
     def run_scheduler(self):
-        schedule.every(get_interval()).minutes.do(self.run_tasks)
+        job = schedule.every(get_interval()).minutes.do(self.run_tasks)
+        job.run()
 
         while True:
             schedule.run_pending()

@@ -2,4 +2,5 @@
 check_interval: 5
 
 # List of domains need to be tracked, separated by commas
-domains: 'yourdomain.com, yourdomain2.com'
+# Example: yourdomain.com,yourdomain.net
+domains: ''
