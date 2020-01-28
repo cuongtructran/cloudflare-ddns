@@ -3,7 +3,7 @@ import logging
 import CloudFlare
 import yaml
 from schedule import Scheduler
-from providers.configuration_provider import get_domains
+from providers.configuration_provider import get_domains, get_credential
 from providers.ip_provider import IpProvider
 
 
@@ -22,14 +22,9 @@ class DomainUpdateScheduler(Scheduler):
         else:
             logging.info("IP didn't change")
 
-    def load_cf_credential(self):
-        with open('resources/configurations/cred.yml') as f:
-            cf_cred = yaml.load(f, Loader=yaml.FullLoader).get('cloudflare')
-            return cf_cred['email'], cf_cred['apikey']
-
     def update_a_records(self, domain_name, new_ip):
-        api, email = self.load_cf_credential()
-        cf = CloudFlare.CloudFlare(api, email)
+        api, email = get_credential()
+        cf = CloudFlare.CloudFlare(token=api, email=email)
         zone = cf.zones.get(params={"name": domain_name})
         if len(zone) > 0:
             a_records = cf.zones.dns_records.get(zone[0]['id'], params={"type": "A"})

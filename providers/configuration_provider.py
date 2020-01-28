@@ -8,4 +8,8 @@ def get_domains():
 
 
 def get_interval():
-    return v.get("check_interval")
+    return v.get_int("check_interval")
+
+
+def get_credential():
+    return v.get("cloudflare.apikey"), v.get("cloudflare.email")
