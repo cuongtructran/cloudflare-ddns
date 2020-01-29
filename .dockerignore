@@ -133,3 +133,4 @@ dmypy.json
 /.idea/
 /cloudflare-ddns.iml
 /docker-compose.yml
+/pipeline.gdsl
