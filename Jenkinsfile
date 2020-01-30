@@ -20,7 +20,7 @@ pipeline {
         buildingTag()
       }
       steps {
-        sh 'printenv'
+        sh 'printenv '
       }
     }
   }
