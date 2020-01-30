@@ -3,13 +3,12 @@ pipeline {
   stages {
     stage('Build branch') {
       environment {
-        DOCKER_USER = credentials('docker-hub-cred-user')
-        DOCKER_PASS = credentials('docker-hub-cred-password')
+        DOCKER_CRED = credentials('docker-hub-creds')
       }
 
       steps {
         echo 'Login docker hub'
-        sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+        sh 'docker login -u $DOCKER_CRED_USR -p $DOCKER_CRED_PSW'
       }
     }
   }
