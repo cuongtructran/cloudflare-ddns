@@ -12,6 +12,7 @@ pipeline {
         sh 'docker build -t cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm .'
         echo 'Pushing to docker hub'
         sh 'docker push cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm'
+        sh 'printenv'
       }
     }
 
@@ -20,7 +21,7 @@ pipeline {
         buildingTag()
       }
       steps {
-        sh 'printenv '
+        sh 'printenv'
       }
     }
   }
