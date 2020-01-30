@@ -17,7 +17,7 @@ pipeline {
 
     stage('Build tag') {
       when {
-        tag '*'
+        tag pattern: '*', comparator: "REGEXP"
       }
       steps {
         sh 'printenv'
