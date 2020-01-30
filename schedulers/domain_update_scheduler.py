@@ -29,10 +29,16 @@ class DomainUpdateScheduler(Scheduler):
         cf = CloudFlare.CloudFlare(token=api, email=email)
         zone = cf.zones.get(params={"name": domain_name})
         if len(zone) > 0:
-            a_records = cf.zones.dns_records.get(zone[0]['id'], params={"type": "A"})
-            for a_record in a_records:
-                if a_record['content'] != new_ip:
-                    cf.zones.dns_records.post(a_record['id'], data={"content": new_ip})
-                    logging.info("Finished update record %s with ip %s", a_record['name'], new_ip)
+            dns_records = cf.zones.dns_records.get(zone[0]['id'], params={"type": "A"})
+            for dns_record in dns_records:
+                if dns_record['content'] != new_ip:
+                    cf.zones.dns_records.put(zone[0]['id'],
+                                             dns_record['id'],
+                                             data={
+                                                 "content": new_ip,
+                                                 'type': dns_record['type'],
+                                                 'name': dns_record['name']
+                                             })
+                    logging.info("Finished update record %s with ip %s", dns_record['name'], new_ip)
                 else:
-                    logging.info("No need to update record %s, because IP is the same", a_record['name'])
+                    logging.info("No need to update record %s, because IP is the same", dns_record['name'])
