@@ -27,7 +27,7 @@ jobs:
       - run:
           name: push docker image
           command: |
-            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
+            docker push cuongtructran/py-cloudflare-ddns
       - run:
           name: docker manifest
           command: |
@@ -56,7 +56,7 @@ jobs:
       - run:
           name: push docker image
           command: |
-            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
+            docker push cuongtructran/py-cloudflare-ddns
       - run:
           name: docker manifest
           command: |
