@@ -39,7 +39,7 @@ pipeline {
         sh 'docker push cuongtructran/py-cloudflare-ddns:${TAG_NAME}'
         sh 'docker push cuongtructran/py-cloudflare-ddns:${TAG_NAME}-arm'
         echo 'Docker manifest'
-        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${TAG_NAME} --amend cuongtructran/py-cloudflare-ddns:${TAG_NAME}-amd64 --amend cuongtructran/py-cloudflare-ddns:${TAG_NAME}-arm'
+        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${TAG_NAME} --amend cuongtructran/py-cloudflare-ddns:${TAG_NAME}-arm'
         sh 'docker manifest push cuongtructran/py-cloudflare-ddns:${TAG_NAME}'
       }
     }
