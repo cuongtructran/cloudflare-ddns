@@ -12,8 +12,8 @@ jobs:
       - run:
           name: Turn on experimental features
           command: |
-            sudo mkdir $HOME/.docker
-            sudo sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
+            mkdir $HOME/.docker
+            sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
       - run:
           name: docker hub login
           command: |
@@ -40,8 +40,8 @@ jobs:
       - run:
           name: Turn on experimental features
           command: |
-            sudo mkdir $HOME/.docker
-            sudo sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
+            mkdir $HOME/.docker
+            sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
       - run:
           name: docker hub login
           command: |
