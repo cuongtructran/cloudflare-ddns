@@ -27,12 +27,12 @@ jobs:
       - run:
           name: push docker image
           command: |
-            docker push cuongtructran/py-cloudflare-ddns
+            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
+            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
       - run:
           name: docker manifest
           command: |
-            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
-            docker manifest annotate --arch amd64 cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
+            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64 --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-arm
             docker manifest push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
 
   build-tag:
@@ -57,12 +57,13 @@ jobs:
       - run:
           name: push docker image
           command: |
-            docker push cuongtructran/py-cloudflare-ddns
+            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG
+            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
       - run:
           name: docker manifest
           command: |
-            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
-            docker manifest annotate --arch amd64 cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
+            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64 --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-arm
+            docker manifest push cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG
 workflows:
   version: 2
   push-to-dockerhub:
