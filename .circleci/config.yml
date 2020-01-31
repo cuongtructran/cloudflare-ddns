@@ -5,7 +5,8 @@
 version: 2
 jobs:
   build-branch:
-    machine: true
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run:
@@ -27,7 +28,8 @@ jobs:
             docker manifest annotate --arch amd64 cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
 
   build-tag:
-    machine: true
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run:
