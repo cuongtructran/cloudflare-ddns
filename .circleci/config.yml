@@ -22,7 +22,7 @@ jobs:
       - run:
           name: build docker image
           command: |
-            docker build -t cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH:$CIRCLE_BRANCH-amd64 .
+            docker build -t cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64 .
       - run:
           name: push docker image
           command: |
