@@ -33,6 +33,7 @@ jobs:
           command: |
             docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
             docker manifest annotate --arch amd64 cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
+            docker manifest push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
 
   build-tag:
     machine:
