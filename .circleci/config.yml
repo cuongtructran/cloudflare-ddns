@@ -22,7 +22,7 @@ jobs:
           name: build docker image
           command: |
             docker build -t cuongtructran/py-cloudflare-ddns .
-            docker tag cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
+            docker tag cuongtructran/py-cloudflare-ddns cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
       - run:
           name: push docker image
           command: |
@@ -51,7 +51,7 @@ jobs:
           name: build docker image
           command: |
             docker build -t cuongtructran/py-cloudflare-ddns .
-            docker tag cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
+            docker tag cuongtructran/py-cloudflare-ddns cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
       - run:
           name: push docker image
           command: |
