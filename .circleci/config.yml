@@ -10,6 +10,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Turn on experimental features
+          command: |
+            sudo mkdir $HOME/.docker
+            sudo sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
+      - run:
           name: docker hub login
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -32,6 +37,11 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - checkout
+      - run:
+          name: Turn on experimental features
+          command: |
+            sudo mkdir $HOME/.docker
+            sudo sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
       - run:
           name: docker hub login
           command: |
