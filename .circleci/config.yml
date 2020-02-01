@@ -30,7 +30,7 @@ jobs:
       - run:
           name: docker manifest
           command: |
-            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
+            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64 --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-arm
             docker manifest push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
 
   build-tag:
