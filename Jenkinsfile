@@ -18,7 +18,7 @@ pipeline {
         echo 'Pushing to docker hub'
         sh 'docker push cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm'
         echo 'Docker manifest'
-        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/} --amend cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm'
+        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/} --amend cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm --amend cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-amd64'
         sh 'docker manifest push cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}'
       }
     }
@@ -35,7 +35,7 @@ pipeline {
         echo 'Pushing to docker hub'
         sh 'docker push cuongtructran/py-cloudflare-ddns:${TAG_NAME}-arm'
         echo 'Docker manifest'
-        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${TAG_NAME} --amend cuongtructran/py-cloudflare-ddns:${TAG_NAME}-arm'
+        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${TAG_NAME} --amend cuongtructran/py-cloudflare-ddns:${TAG_NAME}-amd64 --amend cuongtructran/py-cloudflare-ddns:${TAG_NAME}-arm'
         sh 'docker manifest push cuongtructran/py-cloudflare-ddns:${TAG_NAME}'
       }
     }
