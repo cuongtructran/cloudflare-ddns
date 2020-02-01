@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'docker:dind'
+      args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
   environment {
     DOCKER_CRED = credentials('docker-hub-creds')
   }
@@ -11,6 +16,9 @@ pipeline {
         }
       }
       steps {
+        echo 'Enable experimental features'
+        sh 'mkdir $HOME/.docker'
+        sh 'echo \'{ "experimental": "enabled" }\' >> $HOME/.docker/config.json'
         echo 'Login docker hub'
         sh 'docker login -u $DOCKER_CRED_USR -p $DOCKER_CRED_PSW'
         echo 'Building & tagging docker image'
@@ -28,6 +36,9 @@ pipeline {
         buildingTag()
       }
       steps {
+        echo 'Enable experimental features'
+        sh 'mkdir $HOME/.docker'
+        sh 'echo \'{ "experimental": "enabled" }\' >> $HOME/.docker/config.json'
         echo 'Login docker hub'
         sh 'docker login -u $DOCKER_CRED_USR -p $DOCKER_CRED_PSW'
         echo 'Building & tagging docker image'
