@@ -11,6 +11,7 @@ pipeline {
   stages {
     stage('Build branch') {
       when {
+        branch 'master'
         not {
           buildingTag()
         }
@@ -22,12 +23,12 @@ pipeline {
         echo 'Login docker hub'
         sh 'docker login -u $DOCKER_CRED_USR -p $DOCKER_CRED_PSW'
         echo 'Building & tagging docker image'
-        sh 'docker build -t cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm .'
+        sh 'docker build -t cuongtructran/py-cloudflare-ddns:latest-arm .'
         echo 'Pushing to docker hub'
-        sh 'docker push cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm'
+        sh 'docker push cuongtructran/py-cloudflare-ddns:latest-arm'
         echo 'Docker manifest'
-        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/} --amend cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-arm --amend cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}-amd64'
-        sh 'docker manifest push cuongtructran/py-cloudflare-ddns:${GIT_BRANCH#*/}'
+        sh 'docker manifest create cuongtructran/py-cloudflare-ddns:latest --amend cuongtructran/py-cloudflare-ddns:latest-arm --amend cuongtructran/py-cloudflare-ddns:latest-amd64'
+        sh 'docker manifest push cuongtructran/py-cloudflare-ddns:latest'
       }
     }
 

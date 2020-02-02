@@ -22,16 +22,16 @@ jobs:
       - run:
           name: build docker image
           command: |
-            docker build -t cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64 .
+            docker build -t cuongtructran/py-cloudflare-ddns:latest-amd64 .
       - run:
           name: push docker image
           command: |
-            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64
+            docker push cuongtructran/py-cloudflare-ddns:latest-amd64
       - run:
           name: docker manifest
           command: |
-            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-amd64 --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH-arm
-            docker manifest push cuongtructran/py-cloudflare-ddns:$CIRCLE_BRANCH
+            docker manifest create cuongtructran/py-cloudflare-ddns:latest --amend cuongtructran/py-cloudflare-ddns:latest-amd64 --amend cuongtructran/py-cloudflare-ddns:latest-arm
+            docker manifest push cuongtructran/py-cloudflare-ddns:latest
 
   build-tag:
     machine:
@@ -69,7 +69,7 @@ workflows:
             tags:
               ignore: /.*/
             branches:
-              only: /.*/
+              only: master
       - build-tag:
           filters:
             tags:
