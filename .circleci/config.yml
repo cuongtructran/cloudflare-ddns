@@ -1,0 +1,78 @@
+# Python CircleCI 2.0 configuration file
+#
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build-branch:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - run:
+          name: Turn on experimental features
+          command: |
+            mkdir $HOME/.docker
+            sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
+      - run:
+          name: docker hub login
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: build docker image
+          command: |
+            docker build -t cuongtructran/py-cloudflare-ddns:latest-amd64 .
+      - run:
+          name: push docker image
+          command: |
+            docker push cuongtructran/py-cloudflare-ddns:latest-amd64
+      - run:
+          name: docker manifest
+          command: |
+            docker manifest create cuongtructran/py-cloudflare-ddns:latest --amend cuongtructran/py-cloudflare-ddns:latest-amd64 --amend cuongtructran/py-cloudflare-ddns:latest-arm
+            docker manifest push cuongtructran/py-cloudflare-ddns:latest
+
+  build-tag:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - run:
+          name: Turn on experimental features
+          command: |
+            mkdir $HOME/.docker
+            sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
+      - run:
+          name: docker hub login
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: build docker image
+          command: |
+            docker build -t cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64 .
+      - run:
+          name: push docker image
+          command: |
+            docker push cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64
+      - run:
+          name: docker manifest
+          command: |
+            docker manifest create cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-amd64 --amend cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG-arm
+            docker manifest push cuongtructran/py-cloudflare-ddns:$CIRCLE_TAG
+workflows:
+  version: 2
+  push-to-dockerhub:
+    jobs:
+      - build-branch:
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: master
+      - build-tag:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
