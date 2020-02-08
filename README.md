@@ -29,7 +29,7 @@ Using the docker-compose:
 version: '3'
 services:
   cloudflare-ddns:
-    image: cuongtructran/py-cloudflare-ddns:develop
+    image: cuongtructran/py-cloudflare-ddns:latest
     environment:
       CLOUDFLARE_APIKEY: 'YOUR APIKEY'
       CLOUDFLARE_EMAIL: 'YOUR EMAIL'
