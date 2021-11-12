@@ -14,19 +14,15 @@ class DomainUpdateScheduler(Scheduler):
     def execute(self):
         try:
             domains = get_domains()
-            current_ip, is_new_ip = self.ip_provider.check_ip()
-
-            if is_new_ip:
-                for domain in domains:
-                    self.update_a_records(domain.strip(), current_ip)
-            else:
-                logging.info("IP didn't change")
+            current_ip = self.ip_provider.check_ip()
+            for domain in domains:
+                self.update_a_records(domain.strip(), current_ip)
         except Exception as error:
             logging.exception("Error while updating domains A records: %s", error)
 
     def update_a_records(self, domain_name, new_ip):
         api, email = get_credential()
-        cf = CloudFlare.CloudFlare(token=api, email=email)
+        cf = CloudFlare.CloudFlare(token=api, email=email, debug=True)
         zone = cf.zones.get(params={"name": domain_name})
         if len(zone) > 0:
             dns_records = cf.zones.dns_records.get(zone[0]['id'], params={"type": "A"})

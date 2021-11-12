@@ -4,7 +4,6 @@ from logging.config import dictConfig
 import yaml
 from vyper import v
 
-from providers.configuration_provider import get_domains
 from schedulers.domain_update_scheduler import DomainUpdateScheduler
 from schedulers.schedule_task_runner import ScheduledTasksRunner
 
